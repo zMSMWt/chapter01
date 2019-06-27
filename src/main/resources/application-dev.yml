@@ -1,0 +1,48 @@
+server:
+  port: 8089
+
+# 配置数据源
+spring:
+  datasource:
+    name: test
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_qmcy?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    # 使用druid数据源
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: com.mysql.jdbc.Driver
+#    filters: stat
+#    maxActive: 20
+#    initialSize: 1
+#    maxWait: 60000
+#    minIdle: 1
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: select 'x'
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    maxOpenPreparedStatements: 20
+  # 热部署生效
+  devtools:
+    restart:
+      enabled: true
+      # 设置重启的目录，添加哪个目录的文件需要 restart
+      additional-paths: src/main/java
+  #整合 Redis 单机版，使用 Redis 作为缓存
+  redis:
+    host: 192.168.66.66
+    port: 6379
+    #整合 Redis 集群
+    cluster:
+      nodes: 192.168.66.66:7001,192.168.66.66:7002,192.168.66.66:7003,192.168.66.66:7004
+
+# springboot 整合 Mybatis 框架
+# 加载 Mybatis 配置文件
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  config-location: classpath:mapper/config/sqlMapConfig.xml
+  # 定义别名
+  type-aliases-package: com.zp.chapter01.pojo
