@@ -14,5 +14,6 @@ public class UserVo implements Serializable {
     private String sex;
     private String phone;
     private String address;
+    private String newbirthday;
 
 }

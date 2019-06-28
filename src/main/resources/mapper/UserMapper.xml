@@ -62,6 +62,30 @@
         <include refid="BaseCondition" />
     </sql>
 
+    <!-- 根据动态条件查询总数目（根据BaseCondition查询总数目） -->
+    <select id="countByBaseCondition" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM user
+        <include refid="BaseCondition"/>
+    </select>
+
+    <!-- 根据动态条件查询（根据 BaseCondition 查询） -->
+    <select id="selectByBaseConditionPageable" resultMap="userResultMap" parameterType="java.util.Map">
+        <include refid="selectByBaseCondition" />
+        <if test="orderStr != null">
+            order by #{orderStr}
+            <if test="orderStyle!=null">
+                #{orderStyle}
+            </if>
+        </if>
+        <if test="itemlimit != null">
+            limit #{itemlimit}
+        </if>
+        <if test="start != null and limit != null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
     <select id="findAll" resultType="com.zp.chapter01.pojo.dataobject.UserDo">
         SELECT * FROM user
     </select>

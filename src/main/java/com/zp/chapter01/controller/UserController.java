@@ -1,9 +1,12 @@
 package com.zp.chapter01.controller;
 
+import com.zp.chapter01.common.entity.Result;
 import com.zp.chapter01.pojo.dataobject.UserDo;
 import com.zp.chapter01.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
@@ -82,6 +85,24 @@ public class UserController {
     public List<UserDo> findAll(){
         List<UserDo> list = userService.findAll();
         return list;
+    }
+
+    /**
+     * 查询用户
+     * @return
+     */
+    @RequestMapping("selectuser")
+    public Result selectUser(){
+        return userService.selectUser();
+    }
+
+    /**
+     * 查询用户
+     * @return
+     */
+    @RequestMapping("selectuserlist")
+    public Result selectUserList(@RequestParam("page") Integer page){
+        return userService.selectUserList(page);
     }
 
     /**
