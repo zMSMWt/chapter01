@@ -4,7 +4,6 @@ import com.zp.chapter01.common.entity.Result;
 import com.zp.chapter01.pojo.dataobject.UserDo;
 import com.zp.chapter01.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

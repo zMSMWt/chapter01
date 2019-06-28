@@ -2,7 +2,6 @@ package com.zp.chapter01.service;
 
 import com.zp.chapter01.common.entity.Result;
 import com.zp.chapter01.pojo.dataobject.UserDo;
-import com.zp.chapter01.pojo.valueobject.UserVo;
 
 import java.util.List;
 
