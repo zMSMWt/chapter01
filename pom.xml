@@ -23,7 +23,7 @@
         <commons.lang.version>2.6</commons.lang.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
-        <fastjson.version>1.2.5</fastjson.version>
+        <fastjson.version>1.2.25</fastjson.version>
         <jsoup.version>1.8.3</jsoup.version>
         <guava.version>18.0</guava.version>
         <gson.version>2.2.4</gson.version>
