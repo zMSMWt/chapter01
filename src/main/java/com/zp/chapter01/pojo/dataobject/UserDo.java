@@ -16,6 +16,7 @@ public class UserDo implements Serializable {
     private String sex;
     private String phone;
     private String address;
+    private String role;
 
     public UserDo(){
         super();

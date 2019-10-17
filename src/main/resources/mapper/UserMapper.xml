@@ -20,6 +20,8 @@
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
         <!-- 地址 -->
         <result column="address" property="address" jdbcType="VARCHAR"/>
+        <!-- 角色 -->
+        <result column="role" property="role" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!-- 通用查询结果列名 -->
@@ -50,6 +52,9 @@
             </if>
             <if test="address != null">
                 AND address = #{address,jdbc=VACHAR}
+            </if>
+            <if test="role != null">
+                AND role = #{role,jdbc=VACHAR}
             </if>
         </where>
     </sql>
