@@ -12,4 +12,4 @@ CREATE TABLE `user` (
   `address` varchar(50) DEFAULT NULL COMMENT '用户住址',
   `role` varchar(50) DEFAULT NULL COMMENT '角色',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户信息';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户信息';
