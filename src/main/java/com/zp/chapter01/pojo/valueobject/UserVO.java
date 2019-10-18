@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class UserVo implements Serializable {
+public class UserVO implements Serializable {
 
     private Integer id;
     private String username;

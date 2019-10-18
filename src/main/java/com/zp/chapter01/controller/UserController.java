@@ -1,8 +1,9 @@
 package com.zp.chapter01.controller;
 
 import com.zp.chapter01.common.entity.Result;
-import com.zp.chapter01.pojo.dataobject.UserDo;
+import com.zp.chapter01.pojo.dataobject.UserDO;
 import com.zp.chapter01.service.UserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
 @RestController
+@Api("userTest")
 public class UserController {
 
     //注入 Service 服务对象
@@ -29,10 +31,10 @@ public class UserController {
      * 需求：返回 POJO 对象
      */
     @RequestMapping("pojo")
-    public UserDo showUser(){
+    public UserDO showUser(){
 
-        //创建 UserDo 对象
-        UserDo user = new UserDo();
+        //创建 UserDO 对象
+        UserDO user = new UserDO();
         user.setId(1);
         user.setUsername("qm");
         user.setPassword("123");
@@ -59,14 +61,14 @@ public class UserController {
      * 需求：返回 List 集合对象
      */
     @RequestMapping("list")
-    public List<UserDo> showList(){
-        List<UserDo> userList = new ArrayList<UserDo>();
-        UserDo user1 = new UserDo();
+    public List<UserDO> showList(){
+        List<UserDO> userList = new ArrayList<UserDO>();
+        UserDO user1 = new UserDO();
         user1.setId(1);
         user1.setUsername("zp");
         user1.setPassword("z123");
 
-        UserDo user2 = new UserDo();
+        UserDO user2 = new UserDO();
         user2.setId(2);
         user2.setUsername("gzq");
         user2.setPassword("g123");
@@ -81,8 +83,8 @@ public class UserController {
      * 需求：整合 SSM
      */
     @RequestMapping("ssm")
-    public List<UserDo> findAll(){
-        List<UserDo> list = userService.findAll();
+    public List<UserDO> findAll(){
+        List<UserDO> list = userService.findAll();
         return list;
     }
 

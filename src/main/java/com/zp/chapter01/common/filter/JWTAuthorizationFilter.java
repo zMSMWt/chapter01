@@ -3,7 +3,6 @@ package com.zp.chapter01.common.filter;
 import com.zp.chapter01.common.util.JwtTokenUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -18,7 +17,7 @@ import java.util.ArrayList;
  * 验证成功当然就是进行鉴权了，每一次需要权限的请求都需要检查该用户是否有该权限去操作该资源，
  * 当然，这也是框架帮我们做的，那么我们需要做什么呢？
  * 很简单，只要告诉spring-security该用户是否已登录，是什么角色，拥有什么权限就可以了。
- * JWTAuthenticationFilter 继承于 BasicAuthenticationFilter，【至于为什么要继承这个我也不太清楚了，这个我也是网上看到的其中一种实现，实在 springSecurity 苦手，不过我觉得不继承这个也没事呢（实现以下 filter 接口或者继承其他 filter 实现子类也可以吧）】
+ * JWTAuthenticationFilter 继承于 BasicAuthenticationFilter，【至于为什么要继承这个我也不太清楚了，这个我也是网上看到的其中一种实现】
  * 只要确保过滤器的顺序，JWTAuthorizationFilter 在 JWTAuthenticationFilter 后面就没问题了。
  */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {

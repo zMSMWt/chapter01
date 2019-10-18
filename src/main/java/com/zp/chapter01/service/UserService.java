@@ -1,7 +1,7 @@
 package com.zp.chapter01.service;
 
 import com.zp.chapter01.common.entity.Result;
-import com.zp.chapter01.pojo.dataobject.UserDo;
+import com.zp.chapter01.pojo.dataobject.UserDO;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface UserService {
     /**
      * 需求：查询用户
      */
-    List<UserDo> findAll();
+    List<UserDO> findAll();
 
     /**
      * 查询用户

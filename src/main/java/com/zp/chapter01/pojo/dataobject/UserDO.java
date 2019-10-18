@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class UserDo implements Serializable {
+public class UserDO implements Serializable {
 
     private Integer id;
     private String username;
@@ -18,16 +18,16 @@ public class UserDo implements Serializable {
     private String address;
     private String role;
 
-    public UserDo(){
+    public UserDO(){
         super();
     }
 
-    public UserDo(Integer id, String username) {
+    public UserDO(Integer id, String username) {
         this.id = id;
         this.username = username;
     }
 
-    public UserDo(Integer id, String username, String password) {
+    public UserDO(Integer id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;

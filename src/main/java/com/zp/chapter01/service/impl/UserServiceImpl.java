@@ -4,9 +4,9 @@ import com.zp.chapter01.common.entity.Result;
 import com.zp.chapter01.common.util.BaseUtil;
 import com.zp.chapter01.common.util.BdUtil;
 import com.zp.chapter01.common.util.utils;
-import com.zp.chapter01.pojo.dataobject.UserDo;
+import com.zp.chapter01.pojo.dataobject.UserDO;
 import com.zp.chapter01.mapper.UserMapper;
-import com.zp.chapter01.pojo.valueobject.UserVo;
+import com.zp.chapter01.pojo.valueobject.UserVO;
 import com.zp.chapter01.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,12 +36,12 @@ public class UserServiceImpl implements UserService {
      */
     //@Cacheable(value = "findAll")
     @Override
-    public List<UserDo> findAll() {
+    public List<UserDO> findAll() {
 
         //测试是否使用了缓存，打印一句话到控制台
         System.out.println("如果第二次没有打印此文章，说明走了缓存，没有执行此方法！");
 
-        List<UserDo> list = userMapper.findAll();
+        List<UserDO> list = userMapper.findAll();
         return list;
     }
 
@@ -53,10 +53,10 @@ public class UserServiceImpl implements UserService {
     public Result selectUser() {
         Map<String, Object> param = new HashMap<>();
         param.put("id", 2);
-        List<UserDo> list = userMapper.selectByBaseConditionPageable(param);
-        List<UserVo> res = new ArrayList<>();
-        for(UserDo userDo : list){
-            UserVo userVo = BdUtil.do2bo(userDo, UserVo.class);
+        List<UserDO> list = userMapper.selectByBaseConditionPageable(param);
+        List<UserVO> res = new ArrayList<>();
+        for(UserDO userDo : list){
+            UserVO userVo = BdUtil.do2bo(userDo, UserVO.class);
             userVo.setNewbirthday(utils.dateToStringYMD(userDo.getBirthday()));
             res.add(userVo);
         }
@@ -74,10 +74,10 @@ public class UserServiceImpl implements UserService {
         Integer total = userMapper.countByBaseCondition(param);
         param.put("start", (page - 1) * PAGE_NUM);
         param.put("limit", PAGE_NUM);
-        List<UserDo> list = userMapper.selectByBaseConditionPageable(param);
-        List<UserVo> res = new ArrayList<>();
-        for(UserDo userDo : list){
-            UserVo userVo = BdUtil.do2bo(userDo, UserVo.class);
+        List<UserDO> list = userMapper.selectByBaseConditionPageable(param);
+        List<UserVO> res = new ArrayList<>();
+        for(UserDO userDo : list){
+            UserVO userVo = BdUtil.do2bo(userDo, UserVO.class);
             userVo.setNewbirthday(utils.dateToStringYMD(userDo.getBirthday()));
             res.add(userVo);
         }

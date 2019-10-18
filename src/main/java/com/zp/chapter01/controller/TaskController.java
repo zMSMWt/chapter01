@@ -1,7 +1,13 @@
 package com.zp.chapter01.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.zp.chapter01.common.Enum.ErrorCode;
+import com.zp.chapter01.common.entity.CommonRestResult;
+import com.zp.chapter01.common.entity.Result;
 import com.zp.chapter01.mapper.UserMapper;
-import com.zp.chapter01.pojo.dataobject.UserDo;
+import com.zp.chapter01.pojo.dataobject.UserDO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +17,7 @@ import java.util.List;
  * 测试用例
  */
 @RestController
+@Api("JWT 测试用例")
 @RequestMapping("/test")
 public class TaskController {
 
@@ -18,10 +25,24 @@ public class TaskController {
     UserMapper userMapper;
 
     @GetMapping("/list")
-    public List<UserDo> list() {
-        List<UserDo> list = userMapper.findAll();
-        return list;
+    @ApiOperation(value = "用户列表")
+//    //方式一
+//    public List<UserDO> list() {
+//        List<UserDO> list = userMapper.findAll();
+//        return list;
+//    }
+//    //方式二
+//    public Result list(){
+//        List<UserDO> list = userMapper.findAll();
+//        return Result.wrapSuccessfulResult(list);
+//    }
+//    //方式三
+    public CommonRestResult list(){
+        List<UserDO> list = userMapper.findAll();
+        return new CommonRestResult(list);
     }
+
+
 
     @GetMapping("/listTasks")
     public String listTasks() {

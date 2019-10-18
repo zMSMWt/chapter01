@@ -1,6 +1,6 @@
 package com.zp.chapter01.mapper;
 
-import com.zp.chapter01.pojo.dataobject.UserDo;
+import com.zp.chapter01.pojo.dataobject.UserDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface UserMapper {
     /**
      * 需求：查询用户
      */
-    List<UserDo> findAll();
+    List<UserDO> findAll();
 
     /**
      * 动态条件查询总数目
@@ -24,5 +24,5 @@ public interface UserMapper {
      * @param map
      * @return
      */
-    List<UserDo> selectByBaseConditionPageable(Map<String, Object> map);
+    List<UserDO> selectByBaseConditionPageable(Map<String, Object> map);
 }
