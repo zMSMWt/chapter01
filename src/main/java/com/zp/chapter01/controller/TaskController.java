@@ -1,6 +1,11 @@
 package com.zp.chapter01.controller;
 
+import com.zp.chapter01.mapper.UserMapper;
+import com.zp.chapter01.pojo.dataobject.UserDo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 测试用例
@@ -8,6 +13,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/test")
 public class TaskController {
+
+    @Autowired
+    UserMapper userMapper;
+
+    @GetMapping("/list")
+    public List<UserDo> list() {
+        List<UserDo> list = userMapper.findAll();
+        return list;
+    }
 
     @GetMapping("/listTasks")
     public String listTasks() {
