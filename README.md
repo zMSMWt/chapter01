@@ -13,3 +13,22 @@ CREATE TABLE `user` (
   `role` varchar(50) DEFAULT NULL COMMENT '角色',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户信息';
+
+**************************************************************************
+1、如何使用 springboot，springSecurity，jwt 实现基于 token 的权限管理；
+2、统一处理无权限请求的结果。
+3、具体步骤：
+    1）搭建 springboot 工程
+    2）导入 springSecurity 跟 jwt 的依赖
+    3）用户的实体类
+    4）dao 层
+    5）service 层（真正开发时再写，这里就直接调用 dao 层操作数据库）
+    6）实现 UserDetailsService 接口
+    7）实现 UserDetails 接口
+    8）验证用户登录信息的拦截器
+    9）验证用户权限的拦截器
+    10）springSecurity 配置
+    11）认证的 Controller 以及测试的 controller
+    12）测试
+
+【参照链接：https://blog.csdn.net/ech13an/article/details/80779973】
