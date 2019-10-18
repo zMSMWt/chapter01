@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zp.chapter01.mapper.UserMapper">
+<mapper namespace="com.zp.integration.mapper.UserMapper">
 
-    <resultMap id="userResultMap" type="com.zp.chapter01.pojo.dataobject.UserDO">
+    <resultMap id="userResultMap" type="com.zp.integration.pojo.dataobject.UserDO">
         <!-- 自增ID -->
         <id column="id" property="id" jdbcType="INTEGER"/>
         <!-- 姓名  -->
@@ -91,7 +91,7 @@
         </if>
     </select>
 
-    <select id="findAll" resultType="com.zp.chapter01.pojo.dataobject.UserDO">
+    <select id="findAll" resultType="com.zp.integration.pojo.dataobject.UserDO">
         SELECT * FROM user
     </select>
 </mapper>

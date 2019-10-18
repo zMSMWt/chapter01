@@ -1,0 +1,1 @@
+package com.zp.integration.common.errors;public interface ServiceErrors {    String getCode();    String getMessage();}

@@ -45,4 +45,4 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   config-location: classpath:mapper/config/sqlMapConfig.xml
   # 定义别名
-  type-aliases-package: com.zp.chapter01.pojo
+  type-aliases-package: com.zp.integration.pojo
