@@ -9,7 +9,11 @@ spring:
     url: jdbc:mysql://localhost:3306/test_qmcy?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
-    # 使用druid数据源
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  # 使用druid数据源
 #    type: com.alibaba.druid.pool.DruidDataSource
 #    driver-class-name: com.mysql.jdbc.Driver
 #    filters: stat

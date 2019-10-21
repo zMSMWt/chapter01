@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * JWTAuthenticationFilter 继承于 UsernamePasswordAuthenticationFilter
@@ -27,6 +29,7 @@ import java.util.ArrayList;
  */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
+    private ThreadLocal<Integer> rememberMe = new ThreadLocal<>();
     private AuthenticationManager authenticationManager;
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
@@ -47,21 +50,32 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     // 成功验证后调用的方法
-    // 如果验证成功，就生成token并返回
+    // 如果验证成功，就生成 token 并返回
     @Override
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
 
-        // 查看源代码会发现调用getPrincipal()方法会返回一个实现了`UserDetails`接口的对象
-        // 所以就是JwtUser啦
+        // 查看源代码会发现调用 getPrincipal() 方法会返回一个实现了 UserDetails 接口的对象
+        // 所以就是 JwtUser 啦
         JwtUser jwtUser = (JwtUser) authResult.getPrincipal();
         System.out.println("jwtUser:" + jwtUser.toString());
-        String token = JwtTokenUtils.createToken(jwtUser.getUsername(), false);
-        // 返回创建成功的token
-        // 但是这里创建的token只是单纯的token
-        // 按照jwt的规定，最后请求的格式应该是 `Bearer token`
+//        String token = JwtTokenUtils.createToken(jwtUser.getUsername(), false);
+        /****************** 改造起 **********************/
+        boolean isRemember = rememberMe.get() == 1;
+        String role = "";
+        // 因为在 JwtUser 中存在了权限信息，可以直接获取，由于只有一个角色就这么处理了
+        Collection<? extends GrantedAuthority> authorities = jwtUser.getAuthorities();
+        for (GrantedAuthority authority : authorities){
+            role = authority.getAuthority();
+        }
+        // 根据用户名，角色创建 token
+        String token = JwtTokenUtils.createToken(jwtUser.getUsername(), role, isRemember);
+        /****************** 改造止 **********************/
+        // 返回创建成功的 token
+        // 但是这里创建的 token 只是单纯的 token
+        // 按照 jwt 的规定，最后请求的格式应该是  Bearer token
         response.setHeader("token", JwtTokenUtils.TOKEN_PREFIX + token);
     }
 

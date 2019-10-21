@@ -3,6 +3,7 @@ package com.zp.integration.common.filter;
 import com.zp.integration.common.util.JwtTokenUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * 验证成功当然就是进行鉴权了，每一次需要权限的请求都需要检查该用户是否有该权限去操作该资源，
@@ -43,8 +45,11 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) {
         String token = tokenHeader.replace(JwtTokenUtils.TOKEN_PREFIX, "");
         String username = JwtTokenUtils.getUsername(token);
+        // 改造---> 添加角色
+        String role = JwtTokenUtils.getUsername(token);
         if (username != null) {
-            return new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+//            return new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+            return new UsernamePasswordAuthenticationToken(username, null, Collections.singleton(new SimpleGrantedAuthority(role)));
         }
         return null;
     }

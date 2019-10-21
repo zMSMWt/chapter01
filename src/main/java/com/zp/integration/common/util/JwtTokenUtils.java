@@ -33,6 +33,9 @@ public class JwtTokenUtils {
     // 选择了记住我之后的过期时间为 7 天
     private static final long EXPIRATION_REMEMBER = 604800L;
 
+    // 添加角色的 key
+    private static final String ROLE_CLAIMS = "role";
+
     /**
      * 方式一：创建 token (依赖包 com.auth0)
      * @param claims
@@ -97,6 +100,29 @@ public class JwtTokenUtils {
 
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, SECRET)
+                .setIssuer(ISS)
+                .setSubject(username)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
+                .compact();
+    }
+
+    /**
+     * 基于方式二的改造方法
+     * @param username
+     * @param role
+     * @param isRememberMe
+     * @return
+     */
+    public static String createToken(String username,String role, boolean isRememberMe){
+
+        long expiration = isRememberMe ? EXPIRATION_REMEMBER : EXPIRATION;
+        HashMap<String, Object> map = new HashMap<>();
+        map.put(ROLE_CLAIMS, role);
+        return Jwts.builder()
+                .signWith(SignatureAlgorithm.HS256, SECRET)
+                // 这里要早 set，放到后面会覆盖别的字段
+                .setClaims(map)
                 .setIssuer(ISS)
                 .setSubject(username)
                 .setIssuedAt(new Date())

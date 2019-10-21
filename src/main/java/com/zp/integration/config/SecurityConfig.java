@@ -1,10 +1,13 @@
 package com.zp.integration.config;
 
+import com.zp.integration.common.exception.JWTAccessDeniedHandler;
+import com.zp.integration.common.exception.JWTAuthenticationEntryPoint;
 import com.zp.integration.common.filter.JWTAuthenticationFilter;
 import com.zp.integration.common.filter.JWTAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,7 +25,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
  * 然后再继承一下 WebSecurityConfigurerAdapter 即可
  */
 @EnableWebSecurity
-@EnableGlobalMethodSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -45,14 +48,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.cors().and().csrf().disable()
                 .authorizeRequests()
                 // 测试用资源，需要验证了的用户才能访问
-                .antMatchers("/tasks/**").authenticated()
+                .antMatchers("/test/**").authenticated()
+                // 改造---> 需要角色为 ADMIN 才能删除该资源
+                .antMatchers(HttpMethod.DELETE, "/test/**").hasAuthority("ROLE_ADMIN")
                 // 其他都放行了
                 .anyRequest().permitAll()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 // 不需要 session
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .exceptionHandling().authenticationEntryPoint(new JWTAuthenticationEntryPoint())
+                .accessDeniedHandler(new JWTAccessDeniedHandler());      // 添加无权限时的处理
     }
 
     @Bean
