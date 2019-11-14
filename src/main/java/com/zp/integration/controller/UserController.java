@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
 @RestController
-@Api("userTest")
+@Api(description = "userTest")
+@RequestMapping("/userTest")
 public class UserController {
 
     //注入 Service 服务对象

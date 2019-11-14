@@ -1,6 +1,6 @@
 package com.zp.integration.config;
 
-import com.zp.integration.controller.CommonRequestData;
+import com.zp.integration.common.entity.CommonRequestData;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.springframework.context.annotation.Bean;
@@ -63,25 +63,21 @@ public class SwaggerConfiguration {
                 .groupName("REST_API")
                 .apiInfo(apiInfo("rest api"))
                 .select()
-//            .apis(RequestHandlerSelectors.basePackage("com.zp.integration.controller"))
-//            .paths(PathSelectors.ant("/**")).build().globalOperationParameters(pars);
-
-                /* 本地测试使用防止误提交加注释 */
                 .apis(RequestHandlerSelectors.basePackage("com.zp.integration.controller"))
                 .paths(PathSelectors.ant("/**")).build().globalOperationParameters(pars);
     }
 
-    @Bean
-    public Docket createServiceFacadeAPI() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("SERVICE_REST_API")
-                .apiInfo(apiInfo("service rest api"))
-                .select()
-                .apis(
-                        RequestHandlerSelectors
-                                .basePackage("com.zp.integration.service"))
-                .paths(PathSelectors.ant("/services/**")).build();
-    }
+//    @Bean
+//    public Docket createServiceFacadeAPI() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .groupName("SERVICE_REST_API")
+//                .apiInfo(apiInfo("service rest api"))
+//                .select()
+//                .apis(
+//                        RequestHandlerSelectors
+//                                .basePackage("com.zp.integration.otherController"))
+//                .paths(PathSelectors.ant("/test/**")).build();
+//    }
 
     private ApiInfo apiInfo(String title) {
         return new ApiInfoBuilder()

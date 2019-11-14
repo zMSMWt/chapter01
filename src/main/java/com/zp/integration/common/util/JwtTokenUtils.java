@@ -19,7 +19,7 @@ import java.util.Map;
 public class JwtTokenUtils {
 
     public static final String TOKEN_HEADER = "Authorization";
-    public static final String TOKEN_PREFIX = "Bearer";
+    public static final String TOKEN_PREFIX = "Bearer ";
 
     private static final String SECRET = "jwtsecretdemo";
     private static final String ISS = "sys_admin";
@@ -37,7 +37,7 @@ public class JwtTokenUtils {
     private static final String ROLE_CLAIMS = "role";
 
     /**
-     * 方式一：创建 token (依赖包 com.auth0)
+     * 方式一：创建 token
      * @param claims
      * @return
      */
@@ -99,7 +99,7 @@ public class JwtTokenUtils {
         long expiration = isRememberMe ? EXPIRATION_REMEMBER : EXPIRATION;
 
         return Jwts.builder()
-                .signWith(SignatureAlgorithm.HS256, SECRET)
+                .signWith(SignatureAlgorithm.HS512, SECRET)
                 .setIssuer(ISS)
                 .setSubject(username)
                 .setIssuedAt(new Date())
@@ -120,7 +120,7 @@ public class JwtTokenUtils {
         HashMap<String, Object> map = new HashMap<>();
         map.put(ROLE_CLAIMS, role);
         return Jwts.builder()
-                .signWith(SignatureAlgorithm.HS256, SECRET)
+                .signWith(SignatureAlgorithm.HS512, SECRET)
                 // 这里要早 set，放到后面会覆盖别的字段
                 .setClaims(map)
                 .setIssuer(ISS)

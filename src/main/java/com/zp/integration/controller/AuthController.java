@@ -2,6 +2,7 @@ package com.zp.integration.controller;
 
 import com.zp.integration.dao.UserRepository;
 import com.zp.integration.pojo.dataobject.User;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/auth")
+@Api(description = "注册（登录）")
 public class AuthController {
     @Autowired
     private UserRepository userRepository;

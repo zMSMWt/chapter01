@@ -14,7 +14,7 @@ import java.util.List;
  * 测试用例
  */
 @RestController
-@Api("JWT 测试用例")
+@Api(description = "JWT 测试用例")
 @RequestMapping("/test")
 public class TaskController {
 

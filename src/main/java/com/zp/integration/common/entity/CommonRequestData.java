@@ -1,4 +1,4 @@
-package com.zp.integration.controller;
+package com.zp.integration.common.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 
