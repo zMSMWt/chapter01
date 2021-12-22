@@ -12,9 +12,9 @@ CREATE TABLE `user` (
   `address` varchar(50) DEFAULT NULL COMMENT '用户住址',
   `role` varchar(50) DEFAULT NULL COMMENT '角色',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户信息';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户信息';
 ##################################################################################################
 
 1、如何使用 springboot，springSecurity，jwt 实现基于 token 的权限管理；
