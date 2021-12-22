@@ -11,6 +11,8 @@ CREATE TABLE `user` (
   `phone` varchar(11) DEFAULT NULL COMMENT '用户电话',
   `address` varchar(50) DEFAULT NULL COMMENT '用户住址',
   `role` varchar(50) DEFAULT NULL COMMENT '角色',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户信息';
 ##################################################################################################
