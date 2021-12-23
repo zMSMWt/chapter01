@@ -31,7 +31,7 @@
         <java-jwt.version>3.4.0</java-jwt.version>
         <jjwt.version>0.9.0</jjwt.version>
         <spring-security-core.version>4.2.16.RELEASE</spring-security-core.version>
-        <spring-security-web.version>5.2.9.RELEASE</spring-security-web.version>
+        <spring-security-web.version>4.2.16.RELEASE</spring-security-web.version>
     </properties>
 
     <dependencies>
@@ -75,11 +75,6 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
             <scope>true</scope>
-        </dependency>
-        <!-- mybatis 整合 springboot jar -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
         <!-- 加入 Redis 起步依赖  -->
         <dependency>
