@@ -15,6 +15,9 @@ public enum ErrorCode {
     MANAGE_USER_NO_LOGIN(999999,"请先登录！"),
     UPLOAD_FILE_ERROR(999999,"上传图片失败！"),
     UPLOAD_FILE_ISBIG(999999,"上传图片不能超过2MB！"),
+    ILLEGAL_ARGUMENT(999999, "非法参数！"),
+    REPETITIVE_OPERATION(999999, "重复操作！"),
+    TOKEN_NOT_EXIST(999999, "Token 不存在！"),
     TOKEN_EXPIRED(999999,"Token 已过期,请重新登录！");
 
     @Getter
