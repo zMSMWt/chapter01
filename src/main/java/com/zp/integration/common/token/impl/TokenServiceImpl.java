@@ -38,7 +38,7 @@ public class TokenServiceImpl implements TokenService {
         String string = UUID.randomUUID().toString();
         StrBuilder token = new StrBuilder();
         try{
-            token.append(Constant.Redis.TOKEN_PREFIX).append(string);
+            token.append(Constant.Redis.TOKEN_PREFIX.getName()).append(string);
             redisUtil.setEx(token.toString(), token.toString(), 10000L);
             boolean notEmpty = StringUtils.isNotEmpty(token.toString());
             if (notEmpty) {
