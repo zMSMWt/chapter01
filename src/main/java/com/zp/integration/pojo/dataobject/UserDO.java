@@ -2,33 +2,38 @@ package com.zp.integration.pojo.dataobject;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class UserDO implements Serializable {
+public class UserDO extends BaseEntity {
 
-    private Long id;
+    private static final long serialVersionUID = 1L;
+
     private String username;
+
     private String password;
+
     private Date birthday;
+
     private Integer age;
+
     private String sex;
+
     private String phone;
+
     private String address;
+
     private String role;
 
     public UserDO(){
         super();
     }
 
-    public UserDO(Long id, String username) {
-        this.id = id;
+    public UserDO(String username) {
         this.username = username;
     }
 
-    public UserDO(Long id, String username, String password) {
-        this.id = id;
+    public UserDO(String username, String password) {
         this.username = username;
         this.password = password;
     }

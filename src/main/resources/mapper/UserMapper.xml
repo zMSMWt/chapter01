@@ -22,11 +22,15 @@
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <!-- 角色 -->
         <result column="role" property="role" jdbcType="VARCHAR"/>
+        <!-- 创建时间 -->
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <!-- 修改时间 -->
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <!-- 通用查询结果列名 -->
     <sql id="Base_Column_Name">
-        id,username,password,birthday,age,sex,phone,address
+        id, username, password, birthday, age, sex, phone, address, create_time, update_time
     </sql>
 
     <!-- 动态条件 -->
