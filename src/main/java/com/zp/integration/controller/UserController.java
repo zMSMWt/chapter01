@@ -36,7 +36,7 @@ public class UserController {
 
         //创建 UserDO 对象
         UserDO user = new UserDO();
-        user.setId(1);
+        user.setId(1L);
         user.setUsername("qm");
         user.setPassword("123");
         user.setBirthday(new Date());
@@ -65,12 +65,12 @@ public class UserController {
     public List<UserDO> showList(){
         List<UserDO> userList = new ArrayList<UserDO>();
         UserDO user1 = new UserDO();
-        user1.setId(1);
+        user1.setId(1L);
         user1.setUsername("zp");
         user1.setPassword("z123");
 
         UserDO user2 = new UserDO();
-        user2.setId(2);
+        user2.setId(2L);
         user2.setUsername("gzq");
         user2.setPassword("g123");
 

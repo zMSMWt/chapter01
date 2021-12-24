@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class UserVO implements Serializable {
 
-    private Integer id;
+    private Long id;
     private String username;
     private Date birthday;
     private String sex;
